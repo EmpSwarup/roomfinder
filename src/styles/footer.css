@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+.footer {
+  width: 100%;
+  background: rgb(30, 26, 69) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 26, 69, 1) 0%,
+    rgb(46, 15, 156) 100%
+  ) !important;
+}
+.footer h3 {
+  font-family: 'Roboto', sans-serif;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .footer h3 {
+    font-size: 1rem !important;
+  }
+}

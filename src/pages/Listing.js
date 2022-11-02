@@ -17,6 +17,7 @@ import {
   FaArrowCircleRight,
 } from "react-icons/fa";
 import {GiWaterDrop} from "react-icons/gi"
+import { ImLocation2 } from "react-icons/im";
 import {AiOutlineDollarCircle} from "react-icons/ai"
 
 //config
@@ -80,9 +81,9 @@ const Listing = () => {
           <h3>{listing.name}</h3>
           <h6>
             Price :{" "}
-            {listing.offer ? listing.discountedPrice : listing.regularPrice} /
-            RS
+            {listing.offer ? listing.discountedPrice : listing.regularPrice} Rs.
           </h6>
+          <p><ImLocation2/> {listing.address}</p>
           <p>Property For : {listing.type === "rent" ? "Rent" : "Sale"}</p>
           <p>
             {listing.offer && (
@@ -100,12 +101,12 @@ const Listing = () => {
           <p>
             <FaBath size={20} /> &nbsp;
             {listing.bathrooms > 1
-              ? `${listing.bathrooms} bathrooms`
+              ? `${listing.bathrooms} Bathrooms`
               : "1 Bathroom"}
           </p>
           <p>
             <FaParking size={20} /> &nbsp;
-            {listing.parking ? `Parking spot` : "no spot for parking"}
+            {listing.parking ? `Parking spot` : "No spot for parking"}
           </p>
           <p>
             <GiWaterDrop size={20} /> &nbsp;

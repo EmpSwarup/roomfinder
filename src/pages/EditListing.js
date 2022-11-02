@@ -274,7 +274,7 @@ const EditListing = () => {
           {/* bedrooms */}
           <div className="mb-3 mt-4">
             <label htmlFor="bedrooms" className="form-label">
-              Bedrooms
+              Rooms
             </label>
             <input
               type="number"
@@ -337,7 +337,7 @@ const EditListing = () => {
           {/* furnished */}
           <div className="mb-3 ">
             <label htmlFor="furnished" className="form-label">
-              Furnished :
+              Drinking Water :
             </label>
             <div className="d-flex flex-row ">
               <div className="form-check">
@@ -464,7 +464,7 @@ const EditListing = () => {
                 onChange={onChangeHandler}
                 required
               />
-              {type === "rent" && <p className="ms-4 mt-2">$ / Month</p>}
+              {type === "rent" && <p className="ms-4 mt-2">Rs / Month</p>}
             </div>
           </div>
           {/* offer */}
@@ -489,7 +489,7 @@ const EditListing = () => {
           {/* files images etc */}
           <div className="mb-3">
             <label htmlFor="formFile" className="form-label">
-              select images :
+              Select Images :
             </label>
             <input
               className="form-control"

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaBed, FaBath } from "react-icons/fa";
+import { ImLocation2 } from "react-icons/im";
 import { GiTakeMyMoney } from "react-icons/gi";
 import "../styles/listingitem.css";
 const ListingItem = ({ listing, id, onDelete, onEdit }) => {
@@ -17,17 +18,18 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
                 <h2>{listing.name}</h2>
                 <p>{listing.location}</p>
                 <p>
-                  <GiTakeMyMoney /> RS :{" "}
+                  <GiTakeMyMoney /> Rs :{" "}
                   {listing.offer
                     ? listing.discountedPrice
                     : listing.regularPrice}{" "}
                   {listing.type === "rent" && " / Month"}
                 </p>
+                <p><ImLocation2/> {listing.address}</p>
                 <p>
                   <FaBed /> &nbsp;
                   {listing.bedrooms > 1
-                    ? `${listing.bedrooms} Bedrooms`
-                    : "1 Bedreoom"}
+                    ? `${listing.bedrooms} Rooms`
+                    : "1 Room"}
                 </p>
                 <p>
                   <FaBath /> &nbsp;

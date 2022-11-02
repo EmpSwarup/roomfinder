@@ -115,7 +115,7 @@ const Profile = () => {
         </div>
         <div className="col-md-6 profile-container-col2">
           <div className="container mt-4  d-flex justify-content-between">
-            <h2>Profile Details</h2>
+            <h2>Welcome to Room Finder!</h2>
             <button className="btn btn-danger" onClick={logoutHandler}>
               Logout
             </button>
@@ -173,8 +173,7 @@ const Profile = () => {
           </div>
           <div className="mt-3 create-listing">
             <Link to="/create-listing">
-              <FaArrowAltCircleRight color="primary" /> &nbsp; Sell or Rent Your
-              Home
+            <button type="button" class="btn btn-outline-primary">Create a Listing to Sell or Rent your Property</button>
             </Link>
           </div>
         </div>

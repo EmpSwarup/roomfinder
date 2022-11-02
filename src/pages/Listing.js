@@ -7,6 +7,9 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import SwipeCore, { EffectCoverflow, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import KhaltiCheckout from "khalti-checkout-web";
+
+import config from "../khalti/khaltiConfig";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import "../styles/listing.css";
@@ -46,6 +49,10 @@ const Listing = () => {
   if (loading) {
     return <Spinner />;
   }
+  function buyPackage(){
+    let checkout = new KhaltiCheckout(config);
+    checkout.show({amount: 1000});
+}
 
   return (
     <Layout title={listing.name}>
@@ -118,16 +125,19 @@ const Listing = () => {
           >
             Contact Landlord <FaArrowCircleRight size={20} />
           </Link>
-          <Link
-            className="btn btn-primary"
-            to={`/contact/${listing.useRef}?listingName=${listing.name}`}
-          >
-            Pay Now <AiOutlineDollarCircle size={20} />
-          </Link>
+          <button type="button" className="btn btn-primary" onClick={buyPackage}>Pay Now</button>
         </div>
       </div>
     </Layout>
   );
 };
+/**
+ *  <Link
+            className="btn btn-primary"
+            to={`/contact/${listing.useRef}?listingName=${listing.name}`}
+          >
+            Pay Now <AiOutlineDollarCircle size={20} />
+          </Link>
+ */
 
 export default Listing;

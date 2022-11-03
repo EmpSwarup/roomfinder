@@ -1,6 +1,6 @@
 
 import my_key from './khaltiKey';
-
+import { toast } from "react-toastify";
 import axios from 'axios'
 
 let config = {
@@ -12,7 +12,7 @@ let config = {
     "eventHandler": {
         onSuccess (payload) {
             // hit merchant api for initiating verfication
-            alert('Payment Successful...Thank You!!!')
+            toast.success("Payment Successful!");
             let data = {
                 "token": payload.token,
                 "amount": payload.amount
@@ -22,6 +22,8 @@ let config = {
             
             axios.get(`https://meslaforum.herokuapp.com/khalti/${data.token}/${data.amount}/${my_key.secretKey}`)
                 .then(response => {
+                    // add the romm id to user in firebase
+                    
                     console.log(response.data);
                    
                 })

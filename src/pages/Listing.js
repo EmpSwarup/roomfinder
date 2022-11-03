@@ -22,6 +22,7 @@ import {
 import {GiWaterDrop} from "react-icons/gi"
 import { ImLocation2 } from "react-icons/im";
 import {AiOutlineDollarCircle} from "react-icons/ai"
+import {MdOutlineCallMade} from "react-icons/md"
 
 //config
 SwipeCore.use([EffectCoverflow, Pagination]);
@@ -51,7 +52,7 @@ const Listing = () => {
   }
   function buyPackage(){
     let checkout = new KhaltiCheckout(config);
-    checkout.show({amount: 1000});
+    checkout.show({amount: `${(listing.regularPrice)}`});
 }
 
   return (
@@ -123,9 +124,9 @@ const Listing = () => {
             className="btn btn-success mb-2"
             to={`/contact/${listing.useRef}?listingName=${listing.name}`}
           >
-            Contact Landlord <FaArrowCircleRight size={20} />
+            Contact Landlord <MdOutlineCallMade size={20} />
           </Link>
-          <button type="button" className="btn btn-primary" onClick={buyPackage}>Pay Now</button>
+          <button type="button" className="btn btn-primary" onClick={buyPackage}>Pay Now <AiOutlineDollarCircle size={20} /></button>
         </div>
       </div>
     </Layout>

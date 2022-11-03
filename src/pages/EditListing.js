@@ -173,13 +173,13 @@ const EditListing = () => {
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("upload is" + progress + "% done");
+            console.log("Upload is" + progress + "% done");
             switch (snapshot.state) {
               case "paused":
-                console.log("upload is paused");
+                console.log("Upload is paused");
                 break;
               case "running":
-                console.log("upload is runnning");
+                console.log("Upload is runnning");
             }
           },
           (error) => {

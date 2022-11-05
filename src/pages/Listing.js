@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { getAuth } from "firebase/auth";
 import { useNavigate, Link, useParams } from "react-router-dom";
@@ -13,16 +13,18 @@ import config from "../khalti/khaltiConfig";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import "../styles/listing.css";
+
 import {
   FaBed,
   FaBath,
   FaParking,
   FaArrowCircleRight,
 } from "react-icons/fa";
-import {GiWaterDrop} from "react-icons/gi"
+
+import { GiWaterDrop } from "react-icons/gi"
 import { ImLocation2 } from "react-icons/im";
-import {AiOutlineDollarCircle} from "react-icons/ai"
-import {MdOutlineCallMade} from "react-icons/md"
+import { AiOutlineDollarCircle } from "react-icons/ai"
+import { MdOutlineCallMade } from "react-icons/md"
 
 //config
 SwipeCore.use([EffectCoverflow, Pagination]);
@@ -50,10 +52,15 @@ const Listing = () => {
   if (loading) {
     return <Spinner />;
   }
-  function buyPackage(){
+  async function buyPackage() {
     let checkout = new KhaltiCheckout(config);
-    checkout.show({amount: `${(listing.regularPrice)}`});
-}
+    checkout.show({
+      amount: `${(listing.regularPrice)}`,
+    });
+
+    const docRef = doc(db, "listings", params.listingId);
+    await updateDoc(docRef, { bookedBy: auth.currentUser.uid });
+  }
 
   return (
     <Layout title={listing.name}>
@@ -77,7 +84,7 @@ const Listing = () => {
               pagination={true}
               className="mySwipe"
             >
-                {listing.imgUrls.map((url, index) => (
+              {listing.imgUrls.map((url, index) => (
                 <SwiperSlide key={index}>
                   <img src={listing.imgUrls[index]} alt={listing.name} />
                 </SwiperSlide>
@@ -91,7 +98,7 @@ const Listing = () => {
             Price :{" "}
             {listing.offer ? listing.discountedPrice : listing.regularPrice} Rs.
           </h6>
-          <p><ImLocation2/> {listing.address}</p>
+          <p><ImLocation2 /> <a href={`https://google.com.np/maps/place/${listing.address}`} target="blank">{listing.address}</a></p>
           <p>Property For : {listing.type === "rent" ? "Rent" : "Sale"}</p>
           <p>
             {listing.offer && (
@@ -119,7 +126,7 @@ const Listing = () => {
           <p>
             <GiWaterDrop size={20} /> &nbsp;
             {listing.furnished ? `Drinking Water Available` : "No Drinking Water Available"}
-            </p>
+          </p>
           <Link
             className="btn btn-success mb-2"
             to={`/contact/${listing.useRef}?listingName=${listing.name}`}

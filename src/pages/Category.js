@@ -92,12 +92,20 @@ const fetchLoadMoreListing = async () => {
     <Layout title={params.categoryName === "rent"
     ? "Properties For Rent"
     : "Properties For Sale"}>
+      
       <div className="mt-3 container-fluid">
+      
         <h1>
           {params.categoryName === "rent"
             ? "Properties For Rent"
             : "Properties For Sale"}
         </h1>
+        <div class="col-md-8">
+  <div class="search">
+    <input type="text" class="form-control" placeholder="Search..." />
+    <button class="btn btn-primary">Search</button>
+  </div>
+</div>
         {loading ? (
           <Spinner />
         ) : listing && listing.length > 0 ? (

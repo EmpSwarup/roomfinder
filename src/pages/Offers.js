@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
+import {FaSearch} from "react-icons/fa"
 
 const Offers = () => {
   const [listing, setListing] = useState("");
@@ -91,6 +92,15 @@ const fetchLoadMoreListing = async () => {
 return (
   <Layout title="Best Offers For Houses">
     <div className="offers pt-3 container-fluid">
+    <div class="row height d-flex justify-content-center align-items-center">
+
+<div class="col-md-8">
+  <div class="search">
+    <input type="text" class="form-control" placeholder="Search for rooms..." />
+    <button class="btn btn-primary">Search</button>
+  </div>
+</div>
+</div>
       <h1>
         {" "}
         <img
@@ -113,6 +123,8 @@ return (
       ) : (
         <p>There Are No Current Offers </p>
       )}
+      
+      
       <div className="d-flex align-items-center justify-content-center pb-4 mt-4">
         {lastFetchListing && (
           <button className="load-btn" onClick={fetchLoadMoreListing}>

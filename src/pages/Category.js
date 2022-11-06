@@ -101,10 +101,6 @@ const fetchLoadMoreListing = async () => {
             : "Properties For Sale"}
         </h1>
         <div class="col-md-8">
-  <div class="search">
-    <input type="text" class="form-control" placeholder="Search..." />
-    <button class="btn btn-primary">Search</button>
-  </div>
 </div>
         {loading ? (
           <Spinner />

@@ -1,4 +1,5 @@
 .slider-img{
+  object-fit: cover;
   width: 100% !important;
   height: 75vh !important;
 

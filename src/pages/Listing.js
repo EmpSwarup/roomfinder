@@ -54,9 +54,21 @@ const Listing = () => {
   }
   async function buyPackage() {
     let checkout = new KhaltiCheckout(config);
-    checkout.show({
-      amount: `${(listing.regularPrice)}`,
-    });
+    if(listing.offer){
+      checkout.show({
+      
+        amount: `${(listing.discountedPrice)}`,
+      });
+    }
+     
+    else{
+      checkout.show({
+      
+        amount: `${(listing.regularPrice)}`,
+      });
+    }
+     
+    
 
     const docRef = doc(db, "listings", params.listingId);
     await updateDoc(docRef, { bookedBy: auth.currentUser.uid });

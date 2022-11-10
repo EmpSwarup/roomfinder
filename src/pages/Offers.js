@@ -18,9 +18,11 @@ import ListingItem from "../components/ListingItem";
 import {FaSearch} from "react-icons/fa"
 
 const Offers = () => {
-  const [listing, setListing] = useState("");
+  const [listing, setListing] = useState('');
   const [loading, setLoading] = useState(true);
   const [lastFetchListing, setLastFetchListing] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [listingss,setListings] = useState([]);
 
   //fetch listing
   useEffect(() => {
@@ -47,6 +49,7 @@ const Offers = () => {
           });
         });
         setListing(listings);
+        setListings(listings);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -89,7 +92,11 @@ const fetchLoadMoreListing = async () => {
   }
 };
 
-
+const renderFunction = (list)=>{
+  return (
+    <ListingItem listing={list.data} id={list.id} key={list.id} />
+  )
+}
 
 return (
   <Layout title="Best Offers For Houses">
@@ -98,7 +105,7 @@ return (
 
 <div class="col-md-8">
   <div class="search">
-    <input type="text" class="form-control" placeholder="Search for rooms..." />
+    <input type="text" class="form-control" placeholder="Search for rooms..." onChange={(e)=>setSearchTerm(e.target.value)} />
   </div>
 </div>
 </div>
@@ -121,9 +128,17 @@ return (
       ) : listing && listing.length > 0 ? (
         <>
           <div>
-            {listing.map((list) => (
-              <ListingItem listing={list.data} id={list.id} key={list.id} />
-            ))}
+           
+       
+        {listingss.filter((post)=>{
+                if(searchTerm == ""){
+                  return post;
+                }else if(post.data.address.toLowerCase().includes(searchTerm.toLowerCase())){
+                  return post;
+                }else if(post.data.name.toLowerCase().includes(searchTerm.toLowerCase())){
+                  return post;
+                }
+        }).map(renderFunction)}
           </div>
         </>
       ) : (
@@ -144,3 +159,19 @@ return (
 };
 
 export default Offers;
+
+/*
+ {listing.map((list) => (
+              <ListingItem listing={list.data} id={list.id} key={list.id} />
+            ))}*/
+
+            /*
+              {listing.filter((list)=>{
+      if(searchTerm == ""){
+        return list;
+      }else if(list.data.address.toLowerCase().includes(searchTerm.toLowerCase())){
+         return list;
+      }
+    }).map((list)=>{
+      <ListingItem listing={list.data} id={list.id} key={list.id} />
+    })}*/

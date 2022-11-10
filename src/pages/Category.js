@@ -17,7 +17,9 @@ import ListingItem from "../components/ListingItem";
 
 const Category = () => {
   const [listing, setListing] = useState("");
+  const [listingss,setListings] = useState([]);
   const [lastFetchListing, setLastFetchListing] = useState(null);
+  const [searchTerm,setSearchTerm] = useState([]);
   const [loading, setLoading] = useState(true);
   const params = useParams();
 
@@ -46,6 +48,7 @@ const Category = () => {
           });
         });
         setListing(listings);
+        setListings(listings);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -94,7 +97,14 @@ const fetchLoadMoreListing = async () => {
     : "Properties For Sale"}>
       
       <div className="mt-3 container-fluid">
-      
+      <div class="row height d-flex justify-content-center align-items-center">
+
+<div class="col-md-8">
+  <div class="search">
+    <input type="text" class="form-control" placeholder="Search for rooms..." onChange={(e)=>setSearchTerm(e.target.value)} />
+  </div>
+</div>
+</div>
         <h1>
           {params.categoryName === "rent"
             ? "Properties For Rent"
@@ -107,7 +117,15 @@ const fetchLoadMoreListing = async () => {
         ) : listing && listing.length > 0 ? (
           <>
             <div>
-              {listing.map((list) => (
+              {listingss.filter((post)=>{
+                    if(searchTerm == ""){
+                      return post;
+                    }else if(post.data.address.toLowerCase().includes(searchTerm.toLowerCase())){
+                      return post;
+                    }else if(post.data.name.toLowerCase().includes(searchTerm.toLowerCase())){
+                      return post;
+                    }
+              }).map((list) => (
                 <ListingItem listing={list.data} id={list.id} key={list.id} />
               ))}
             </div>

@@ -14,6 +14,7 @@
   border-right: 5px solid #470d21;
 }
 .item-card-continer1 img {
+  object-fit: cover;
   height: 200px;
   width: 100%;
   border: 5px solid rgba(0, 0, 0, 0.173);

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 .footer {
+  align-items: center;
   width: 100%;
   background: rgb(30, 26, 69) !important;
   background: linear-gradient(

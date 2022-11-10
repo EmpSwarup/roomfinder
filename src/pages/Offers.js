@@ -97,6 +97,14 @@ return (
     <div class="row height d-flex justify-content-center align-items-center">
 
 <div class="col-md-8">
+  <div class="search">
+    <input type="text" class="form-control" placeholder="Search for rooms..." />
+  </div>
+</div>
+</div>
+    <div class="row height d-flex justify-content-center align-items-center">
+
+<div class="col-md-8">
 </div>
 </div>
       <h1>

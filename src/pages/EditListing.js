@@ -219,6 +219,20 @@ const EditListing = () => {
     setLoading(false);
     navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
+
+  const preventMinus = (e) => {
+    if (e.code === 'Minus') {
+        e.preventDefault();
+    }
+};
+const preventPasteNegative = (e) => {
+  const clipboardData = e.clipboardData || window.clipboardData;
+  const pastedData = parseFloat(clipboardData.getData('text'));
+
+  if (pastedData < 0) {
+      e.preventDefault();
+  }
+};
   return (
     <Layout>
       <div className="container d-flex flex-column align-items-center justify-content-center mb-4">
@@ -282,6 +296,9 @@ const EditListing = () => {
               id="bedrooms"
               value={bedrooms}
               onChange={onChangeHandler}
+              onKeyPress={preventMinus}
+              min="1"
+                onPaste={preventPasteNegative}
               required
             />
           </div>
@@ -296,6 +313,9 @@ const EditListing = () => {
               id="bathrooms"
               value={bathrooms}
               onChange={onChangeHandler}
+              onKeyPress={preventMinus}
+              min="0"
+                onPaste={preventPasteNegative}
               required
             />
           </div>
@@ -462,6 +482,9 @@ const EditListing = () => {
                 name="regularPrice"
                 value={regularPrice}
                 onChange={onChangeHandler}
+                onKeyPress={preventMinus}
+                min="1"
+                onPaste={preventPasteNegative}
                 required
               />
               {type === "rent" && <p className="ms-4 mt-2">Rs / Month</p>}
@@ -481,6 +504,9 @@ const EditListing = () => {
                 name="discountedPrice"
                 value={discountedPrice}
                 onChange={onChangeHandler}
+                onKeyPress={preventMinus}
+                min="1"
+                onPaste={preventPasteNegative}
                 required
               />
             </div>
